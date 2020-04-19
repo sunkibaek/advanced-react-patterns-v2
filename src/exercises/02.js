@@ -1,6 +1,6 @@
 // Compound Components
 
-import React, {useState, cloneElement} from 'react'
+import React, {useState, cloneElement, Children} from 'react'
 import {Switch} from '../switch'
 
 const Toggle = ({onToggle, children}) => {
@@ -13,8 +13,8 @@ const Toggle = ({onToggle, children}) => {
     onToggle(newValue)
   }
 
-  return children.map((c, i) =>
-    cloneElement(c, {key: i, on: on, onClick: handleToggle}),
+  return Children.map(children, (c) =>
+    cloneElement(c, {on: on, onClick: handleToggle}),
   )
 }
 
